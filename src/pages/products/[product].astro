@@ -1,0 +1,209 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import products from "../../data/products.json";
+
+// Define getStaticPaths to generate static pages for each product
+export async function getStaticPaths() {
+  return products.map((product) => ({
+    params: { product: product.id }, // The dynamic segment (e.g., "dark-brown")
+    props: { productData: product }, // Pass product data as props
+  }));
+}
+
+// Access the product data passed from getStaticPaths
+const { productData } = Astro.props;
+---
+
+<Layout>
+  <section class="py-20">
+    <div class="container mx-auto px-6">
+      <!-- Product Details Section -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Product Image Gallery (Sticky) -->
+        <div class="md:sticky top-20 h-fit">
+          <img
+            src={productData.image}
+            alt={productData.name}
+            class="w-full rounded-lg"
+          />
+        </div>
+
+        <!-- Product Details (Centered on Mobile) -->
+        <div class="flex flex-col justify-center text-center md:text-left">
+          <h1 class="text-4xl font-bold text-yellow-900">
+            {productData.name}
+          </h1>
+          <p class="mt-4 text-2xl font-bold text-yellow-800">
+            ₹{productData.price}
+          </p>
+          <div class="mt-6">
+            <label for="quantity" class="block text-yellow-900">Quantity</label>
+            <select
+              id="quantity"
+              class="mt-2 p-2 border border-yellow-300 rounded-lg mx-auto md:mx-0"
+            >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+          <!-- Pass product data via a data attribute -->
+          <button
+            id="addToCartButton"
+            data-product={JSON.stringify(productData)}
+            class="mt-6 cursor-pointer bg-yellow-500 text-white px-8 py-3 rounded-lg hover:bg-yellow-600 transition-colors mx-auto md:mx-0"
+          >
+            Add to Cart
+          </button>
+
+          <!-- Product Description Section -->
+          <div class="mt-16">
+            <h2 class="text-2xl font-bold text-yellow-900">
+              Product Description
+            </h2>
+            <p class="mt-4 text-yellow-800">
+              {productData.description}
+            </p>
+          </div>
+
+          <!-- Additional Information Section -->
+          <div class="mt-16">
+            <h2 class="text-2xl font-bold text-yellow-900">
+              Additional Information
+            </h2>
+            <div class="mt-4 text-yellow-800">
+              <p>
+                <strong>Ingredients:</strong>
+                {productData.ingredients}
+              </p>
+              <p class="mt-2">
+                <strong>Usage:</strong>
+                {productData.usage}
+              </p>
+              <p class="mt-2">
+                <strong>Storage:</strong>
+                {productData.storage}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Related Products Section -->
+      <div class="mt-16 mx-4">
+        <h2 class="text-2xl font-bold text-yellow-900 text-center md:text-left">
+          Related Products
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+          {
+            products
+              .filter((p) => p.id !== productData.id) // Exclude the current product
+              .slice(0, 2) // Show only 2 related products
+              .map((product) => (
+                <a
+                  href={`/products/${product.id}`}
+                  class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+                >
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    class="w-full h-48 object-cover rounded-lg"
+                  />
+                  <h3 class="text-xl font-bold text-yellow-900 mt-4 text-center">
+                    {product.name}
+                  </h3>
+                  <p class="mt-2 text-yellow-800 text-center">₹{product.price}</p>
+                </a>
+              ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client-side Script for "Add to Cart" -->
+  <!-- @ts-ignore -->
+  <script client:load is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+      const addToCartButton = document.getElementById("addToCartButton");
+      const quantitySelect = document.getElementById("quantity");
+
+      if (!addToCartButton) {
+        console.error("Add to Cart button not found");
+        return;
+      }
+      if (!quantitySelect) {
+        console.error("Quantity select element not found");
+        return;
+      }
+
+      // Parse the product data from the button's data attribute
+      const productDataStr = addToCartButton.getAttribute("data-product");
+      if (!productDataStr) {
+        console.error("Product data attribute not found");
+        return;
+      }
+      let productData;
+      try {
+        productData = JSON.parse(productDataStr);
+      } catch (error) {
+        console.error("Error parsing product data:", error);
+        return;
+      }
+      console.log("Product Data:", productData);
+
+      addToCartButton.addEventListener("click", () => {
+        console.log("Add to Cart button clicked");
+        const quantity = parseInt(quantitySelect.value, 10);
+        if (isNaN(quantity)) {
+          console.error("Invalid quantity");
+          return;
+        }
+        // Retrieve existing cart from localStorage or initialize an empty array
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        console.log("Current cart:", cart);
+
+        // Check if the product is already in the cart
+        const existingProductIndex = cart.findIndex(
+          (item) => item.id === productData.id
+        );
+
+        if (existingProductIndex !== -1) {
+          // Update quantity if product already exists
+          cart[existingProductIndex].quantity += quantity;
+        } else {
+          // Add new product to cart
+          cart.push({
+            id: productData.id,
+            name: productData.name,
+            price: productData.price,
+            image: productData.image,
+            quantity: quantity,
+          });
+        }
+        // Save updated cart to localStorage
+        localStorage.setItem("cart", JSON.stringify(cart));
+        console.log("Updated cart:", cart);
+        alert(`${productData.name} added to cart!`);
+
+        // Update the cart count (if applicable)
+        function updateCartCount() {
+          const cart = JSON.parse(localStorage.getItem("cart")) || [];
+          const totalQuantity = cart.reduce(
+            (sum, item) => sum + (item.quantity || 0),
+            0
+          );
+          const cartCountEl = document.getElementById("cartCount");
+          if (cartCountEl) {
+            cartCountEl.innerText = totalQuantity;
+          }
+        }
+        updateCartCount();
+        window.addEventListener("storage", updateCartCount);
+      });
+    });
+  </script>
+</Layout>
+

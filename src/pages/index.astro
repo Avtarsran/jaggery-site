@@ -1,11 +1,103 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import products from "../data/products.json";
 ---
 
 <Layout>
-	<Welcome />
+  <!-- Hero Section -->
+  <section class="bg-yellow-100 py-20">
+    <div class="container mx-auto text-center">
+      <h1 class="text-5xl font-bold text-yellow-900">
+        Welcome to Jaggery Delight
+      </h1>
+      <p class="mt-4 text-yellow-800">Natural, Healthy, and Delicious</p>
+      <a
+        href="/products"
+        class="mt-8 inline-block bg-yellow-500 text-white px-6 py-3 rounded-lg"
+        >Explore Products</a
+      >
+    </div>
+  </section>
+
+  <!-- Product Showcase Section -->
+  <section class="py-16">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-bold text-yellow-900 text-center">
+        Our Products
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8 mx-4">
+        {
+          products.map((product) => (
+            <div class="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow flex flex-col">
+              <img
+                src={product.image}
+                alt={product.name}
+                class="w-full h-48 object-cover rounded-lg"
+              />
+              <h3 class="text-xl font-bold text-yellow-900 mt-4">
+                {product.name}
+              </h3>
+              <p class="mt-2 text-yellow-800 flex-grow">
+                {product.description}
+              </p>
+              <a
+                href={`/products/${product.id}`}
+                class="mt-4 inline-block bg-yellow-500 text-white px-6 py-2 rounded-lg text-center"
+              >
+                View More
+              </a>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="bg-yellow-50 py-16">
+    <div class="container mx-auto text-center max-w-5xl">
+      <h2 class="text-4xl font-extrabold text-yellow-900 tracking-wide">
+        Pure. Natural. Authentic.
+      </h2>
+      <p class="text-yellow-700 text-lg mt-2">
+        Experience the richness of traditional jaggery made with care.
+      </p>
+
+      <!-- Content Wrapper -->
+      <div class="mt-12 flex flex-col md:flex-row items-center gap-10">
+        <!-- Left: Jaggery Image Grid -->
+        <div class="flex-1 grid grid-cols-2 gap-4">
+          <img
+            src="/images/jaggery-1.jpg"
+            alt="Natural Jaggery"
+            class="w-full h-56 object-cover rounded-xl shadow-lg transform hover:scale-105 transition"
+          />
+          <img
+            src="/images/jaggery-2.jpg"
+            alt="Organic Jaggery Blocks"
+            class="w-full h-56 object-cover rounded-xl shadow-lg transform hover:scale-105 transition"
+          />
+        </div>
+
+        <!-- Right: Text Card -->
+        <div
+          class="bg-white p-8 rounded-2xl shadow-2xl flex-1 border-l-8 border-yellow-500"
+        >
+          <h3 class="text-2xl font-semibold text-yellow-900">
+            About Jaggery Delight
+          </h3>
+          <p class="mt-4 text-yellow-800 leading-relaxed">
+            At <span class="font-semibold">Jaggery Delight</span>, we take pride
+            in crafting **pure, unrefined, and chemical-free jaggery** using
+            traditional methods. With **branches in India & Australia**, we
+            deliver a farm-to-table experience, ensuring every bite is
+            **nutrient-rich and delicious**.
+          </p>
+          <p class="mt-4 text-yellow-800 font-semibold italic">
+            100% Natural. 100% Healthy. Loved by Customers Worldwide.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>

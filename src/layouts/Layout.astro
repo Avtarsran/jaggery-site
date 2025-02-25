@@ -1,22 +1,260 @@
-<!doctype html>
+---
+import "../styles/global.css";
+---
+
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jaggery Store</title>
+  </head>
+  <body class="bg-yellow-50">
+    <!-- Navigation Bar -->
+    <header class="bg-yellow-900 text-yellow-50 py-8">
+      <div class="container mx-auto flex justify-between items-center px-8">
+        <!-- Website Name -->
+        <a href="/" class="text-2xl font-bold hover:text-yellow-300"
+          >Jaggery Store</a
+        >
+
+        <!-- Navigation Links -->
+        <nav class="flex items-center space-x-8">
+          <!-- Process of Making Jaggery -->
+          <a href="/process" class="flex items-center hover:text-yellow-300">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-8 w-8 mr-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+            <span>Process</span>
+          </a>
+
+          <!-- Cart Icon -->
+          <a
+            href="/cart"
+            class="relative flex items-center hover:text-yellow-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-8 w-8"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+              ></path>
+            </svg>
+            <!-- Cart Item Count (dynamically updated) -->
+            <span
+              id="cartCount"
+              class="absolute -top-3 -right-4 bg-yellow-500 text-white text-xs px-2 py-1 rounded-full"
+              >0</span
+            >
+          </a>
+
+          <!-- Client-side Script to update cart count -->
+          <!-- @ts-ignore -->
+          <script client:load is:inline>
+            function updateCartCount() {
+              // Retrieve the cart from localStorage or use an empty array if not found.
+              const cart = JSON.parse(localStorage.getItem("cart")) || [];
+              // Sum the quantities of all items in the cart
+              const totalQuantity = cart.reduce(
+                (sum, item) => sum + (item.quantity || 0),
+                0
+              );
+              // Update the cart count span
+              const cartCountEl = document.getElementById("cartCount");
+              if (cartCountEl) {
+                cartCountEl.innerText = totalQuantity;
+              }
+            }
+
+            // Initial update
+            updateCartCount();
+
+            // Optionally, listen for storage events to update when changes occur in other tabs
+            window.addEventListener("storage", updateCartCount);
+          </script>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <slot />
+      <!-- This is where your page content will be injected -->
+    </main>
+
+    <!-- Responsive Footer -->
+    <footer class="bg-yellow-900 text-yellow-50 py-8">
+      <div class="container mx-auto px-6">
+        <!-- Main Footer Content -->
+        <div
+          class="flex flex-col md:flex-row md:justify-between items-start md:items-center"
+        >
+          <!-- Left Column: Branch Locations -->
+          <div class="mb-6 md:mb-0 flex items-start">
+            <div class="mr-4">
+              <!-- Location Icon -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-8 w-8 text-yellow-300"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12 5 9 6.343 9 8s1.343 3 3 3z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 11c-2.21 0-4 1.79-4 4 0 2.21 4 7 4 7s4-4.79 4-7c0-2.21-1.79-4-4-4z"
+                ></path>
+              </svg>
+            </div>
+            <div>
+              <p class="font-semibold">India Branch</p>
+              <p class="text-sm text-yellow-200">
+                123 Main Street,<br />
+                Andheri, Mumbai,<br />
+                Maharashtra, India
+              </p>
+              <div class="mt-4">
+                <p class="font-semibold">Australia Branch</p>
+                <p class="text-sm text-yellow-200">
+                  456 Ocean Drive,<br />
+                  Bondi Beach, Sydney,<br />
+                  NSW, Australia
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Center Column: Social Media Links (Vertical) -->
+          <div class="mb-6 md:mb-0 flex flex-col items-center space-y-4">
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              aria-label="Instagram"
+              class="hover:text-yellow-300 transition-colors duration-200"
+            >
+              <!-- Instagram Icon -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-8 w-8"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M7.75 2C4.678 2 2 4.678 2 7.75v8.5C2 19.322 4.678 22 7.75 22h8.5C19.322 22 22 19.322 22 16.25v-8.5C22 4.678 19.322 2 16.25 2h-8.5zm0 1.5h8.5C18.99 3.5 21.5 6.01 21.5 9.25v5.5c0 3.24-2.51 5.75-5.75 5.75h-8.5C5.51 20.5 3 18 3 14.75v-5.5C3 6.01 5.51 3.5 7.75 3.5z"
+                ></path>
+                <path
+                  d="M12 7a5 5 0 100 10 5 5 0 000-10zm0 1.5a3.5 3.5 0 110 7 3.5 3.5 0 010-7zM17.25 6a1 1 0 100 2 1 1 0 000-2z"
+                ></path>
+              </svg>
+            </a>
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              aria-label="Facebook"
+              class="hover:text-yellow-300 transition-colors duration-200"
+            >
+              <!-- Facebook Icon -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-8 w-8"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M13.5 22v-9.5h3l.5-4h-3.5V7.5c0-1.15.32-1.95 1.98-1.95h2.02V2.01C16.25 2 14.65 2 13 2 10.3 2 8.5 4.05 8.5 7.2v3.3H5v4h3.5V22h5z"
+                ></path>
+              </svg>
+            </a>
+            <a
+              href="https://www.linkedin.com"
+              target="_blank"
+              aria-label="LinkedIn"
+              class="hover:text-yellow-300 transition-colors duration-200"
+            >
+              <!-- LinkedIn Icon -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-8 w-8"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.8v2.2h.1c.67-1.27 2.3-2.6 4.74-2.6 5.07 0 6 3.33 6 7.65V24h-5v-7.6c0-1.81-.03-4.14-2.52-4.14-2.52 0-2.9 1.97-2.9 4v7.74h-5V8z"
+                ></path>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Right Column: Pages Section -->
+          <div class="text-right md:text-right">
+            <p class="font-semibold mb-2">Quick Links</p>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="/process"
+                  class="text-sm hover:text-yellow-300 transition-colors duration-200"
+                  >Process</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/cart"
+                  class="text-sm hover:text-yellow-300 transition-colors duration-200"
+                  >Cart</a
+                >
+              </li>
+              <li>
+                <a
+                  href="/"
+                  class="text-sm hover:text-yellow-300 transition-colors duration-200"
+                  >Home</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <hr class="border-yellow-700 my-6" />
+
+        <!-- Copyright Section -->
+        <div class="text-center text-xs text-yellow-200">
+          <p>&copy; 2023 Jaggery Store. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
 </style>

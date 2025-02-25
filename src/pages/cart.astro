@@ -1,0 +1,140 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <section class="py-20 bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-6">
+      <h1 class="text-4xl font-bold text-center text-yellow-900 mb-10">
+        Your Cart
+      </h1>
+
+      <!-- Cart Items Container -->
+      <div id="cartContainer"></div>
+
+      <!-- Empty Cart Message -->
+      <div
+        id="emptyCartMessage"
+        class="text-center text-2xl text-yellow-600 my-10 hidden"
+      >
+        <p>Uh oh, your cart is empty!</p>
+        <p class="mt-2">Add some amazing products to your cart.</p>
+      </div>
+
+      <!-- Total Amount Display -->
+      <div id="totalAmountContainer" class="text-center mt-6 text-2xl font-bold text-yellow-900">
+        Total: ₹0
+      </div>
+
+      <!-- Checkout Section -->
+      <div class="text-center mt-10">
+        <button
+          id="checkoutButton"
+          class="bg-yellow-500 hover:bg-yellow-600 transition-colors text-white px-8 py-3 rounded-lg"
+        >
+          Checkout
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client-side Script for Cart Functionality -->
+  <!-- @ts-ignore -->
+  <script client:load is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+      const cartContainer = document.getElementById("cartContainer");
+      const emptyCartMessage = document.getElementById("emptyCartMessage");
+      const totalAmountContainer = document.getElementById("totalAmountContainer");
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      // Function to update the cart count (if using a cart icon elsewhere)
+      function updateCartCount() {
+        const totalQuantity = cart.reduce((sum, item) => sum + (item.quantity || 0), 0);
+        const cartCountEl = document.getElementById("cartCount");
+        if (cartCountEl) {
+          cartCountEl.innerText = totalQuantity;
+        }
+      }
+
+      // Function to calculate the total amount in the cart
+      function calculateTotalAmount() {
+        return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+      }
+
+      // Function to update the total amount displayed on the page
+      function updateTotalAmount() {
+        const totalAmount = calculateTotalAmount();
+        if (totalAmountContainer) {
+          totalAmountContainer.innerText = `Total: ₹${totalAmount}`;
+        }
+      }
+
+      // Function to render cart items
+      function renderCart() {
+        cartContainer.innerHTML = "";
+        if (cart.length === 0) {
+          emptyCartMessage.classList.remove("hidden");
+          updateTotalAmount();
+          return;
+        } else {
+          emptyCartMessage.classList.add("hidden");
+        }
+
+        cart.forEach((item, index) => {
+          const productDiv = document.createElement("div");
+          productDiv.className =
+            "flex flex-col md:flex-row items-center justify-between bg-white shadow-md rounded-lg p-6 mb-6";
+
+          productDiv.innerHTML = `
+            <div class="flex items-center w-full md:w-auto">
+              <img src="${item.image}" alt="${item.name}" class="w-24 h-24 object-cover rounded-lg mr-6" />
+              <div>
+                <h2 class="text-2xl font-bold text-yellow-900">${item.name}</h2>
+                <p class="text-yellow-800">Price: ₹${item.price}</p>
+                <p class="text-yellow-800">Quantity: ${item.quantity}</p>
+              </div>
+            </div>
+            <div class="mt-4 md:mt-0">
+              <button data-index="${index}" class="remove-btn bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg">
+                Remove
+              </button>
+            </div>
+          `;
+          cartContainer.appendChild(productDiv);
+        });
+
+        // Attach event listeners to all remove buttons
+        const removeButtons = document.querySelectorAll(".remove-btn");
+        removeButtons.forEach((button) => {
+          button.addEventListener("click", (e) => {
+            const index = parseInt(e.target.getAttribute("data-index"), 10);
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            renderCart();
+            updateCartCount();
+            updateTotalAmount();
+          });
+        });
+
+        updateTotalAmount();
+      }
+
+      // Render cart on page load
+      renderCart();
+      updateCartCount();
+
+      // Checkout button event
+      const checkoutButton = document.getElementById("checkoutButton");
+      checkoutButton.addEventListener("click", () => {
+        if (cart.length === 0) {
+          alert("Your cart is empty!");
+        } else {
+          const totalAmount = calculateTotalAmount();
+          alert(`Proceeding to checkout...\nTotal Amount: ₹${totalAmount}`);
+          // For example, you might redirect to your checkout page:
+          // window.location.href = "/checkout";
+        }
+      });
+    });
+  </script>
+</Layout>

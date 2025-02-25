@@ -1,0 +1,98 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <!-- Hero Section -->
+  <section class="py-24 bg-yellow-50">
+    <div class="container mx-auto px-6">
+      <h1 class="text-4xl md:text-5xl font-bold text-center text-yellow-900 mb-8">
+        The Art of Making Jaggery
+      </h1>
+      <p class="text-lg text-yellow-800 text-center max-w-3xl mx-auto">
+        Discover the natural, time-honored process of crafting jaggery—a pure and healthy alternative to refined sugars. Our traditional methods honor generations of expertise and nature’s bounty.
+      </p>
+    </div>
+  </section>
+
+  <!-- Process Section with Instagram Video Embed -->
+  <section class="py-12 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <!-- Process Description -->
+        <div>
+          <h2 class="text-3xl font-bold text-yellow-900 mb-4">Traditional Process</h2>
+          <p class="text-yellow-800 text-lg mb-4">
+            Our jaggery begins its journey in the open fields where the finest sugarcane is carefully harvested. The fresh juice is extracted using traditional presses and then slowly simmered over natural wood fires.
+          </p>
+          <p class="text-yellow-800 text-lg">
+            As the juice reduces, impurities are skillfully removed, and the rich syrup is poured into handcrafted molds. The result is artisanal blocks of jaggery that encapsulate nature’s pure goodness.
+          </p>
+        </div>
+        <!-- Instagram Video Embed -->
+        <div class="w-full">
+          <!-- Instagram embed block -->
+          <blockquote
+            class="instagram-media rounded-lg shadow-lg"
+            data-instgrm-permalink="https://www.instagram.com/reel/DF41kFOz8Az/?igsh=eXY2ZHd2cnYya2g4"
+            data-instgrm-version="14"
+            style=" background:#FFF; border:0; margin: 1px; max-width:540px; width:100%;"
+          >
+          </blockquote>
+          <script async defer src="//www.instagram.com/embed.js"></script>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section with Cards -->
+  <section class="py-24 bg-yellow-50">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl font-bold text-center text-yellow-900 mb-10">
+        Benefits of Jaggery & Jaggery Powder
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Card 1 -->
+        <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition-shadow">
+          <div class="flex items-center justify-center mb-4">
+            <!-- Icon could be an SVG here -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 1.343-3 3v6h6v-6c0-1.657-1.343-3-3-3z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a9 9 0 100 18 9 9 0 000-18z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-yellow-900 text-center mb-2">Nutrient Rich</h3>
+          <p class="text-yellow-800 text-center">
+            Packed with essential minerals and antioxidants, jaggery is a natural source of iron and vitamins.
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition-shadow">
+          <div class="flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 110 20 10 10 0 010-20z" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-yellow-900 text-center mb-2">Natural Energy</h3>
+          <p class="text-yellow-800 text-center">
+            Enjoy sustained energy without the sudden spike and crash associated with refined sugars.
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition-shadow">
+          <div class="flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          <h3 class="text-xl font-bold text-yellow-900 text-center mb-2">Versatile Flavor</h3>
+          <p class="text-yellow-800 text-center">
+            Its natural caramel notes enhance both sweet and savory dishes, making it an ideal ingredient in your kitchen.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
