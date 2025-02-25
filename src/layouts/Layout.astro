@@ -67,26 +67,7 @@ import "../styles/global.css";
           <!-- Client-side Script to update cart count -->
           <!-- @ts-ignore -->
           <script client:load is:inline>
-            function updateCartCount() {
-              // Retrieve the cart from localStorage or use an empty array if not found.
-              const cart = JSON.parse(localStorage.getItem("cart")) || [];
-              // Sum the quantities of all items in the cart
-              const totalQuantity = cart.reduce(
-                (sum, item) => sum + (item.quantity || 0),
-                0
-              );
-              // Update the cart count span
-              const cartCountEl = document.getElementById("cartCount");
-              if (cartCountEl) {
-                cartCountEl.innerText = totalQuantity;
-              }
-            }
-
-            // Initial update
-            updateCartCount();
-
-            // Optionally, listen for storage events to update when changes occur in other tabs
-            window.addEventListener("storage", updateCartCount);
+            
           </script>
         </nav>
       </div>
