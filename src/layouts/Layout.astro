@@ -78,56 +78,86 @@ import "../styles/global.css";
     </main>
 
     <!-- Responsive Footer -->
-    <!-- Responsive Footer -->
     <footer class="bg-yellow-900 text-yellow-50 py-8">
       <div class="container mx-auto px-6">
         <!-- Main Footer Content -->
         <div class="flex flex-col md:flex-row md:justify-between items-center">
-          <!-- Left Column: Branch Locations -->
-          <div class="mb-6 md:mb-0 flex items-start">
-            <div class="mr-4">
-              <!-- Location Icon -->
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-8 w-8 text-yellow-300"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12 5 9 6.343 9 8s1.343 3 3 3z"
-                ></path>
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 11c-2.21 0-4 1.79-4 4 0 2.21 4 7 4 7s4-4.79 4-7c0-2.21-1.79-4-4-4z"
-                ></path>
-              </svg>
-            </div>
-            <div>
-              <p class="font-semibold">India Branch</p>
-              <p class="text-sm text-yellow-200">
-                123 Main Street,<br />
-                Andheri, Mumbai,<br />
-                Maharashtra, India
-              </p>
-              <div class="mt-4">
-                <p class="font-semibold">Australia Branch</p>
-                <p class="text-sm text-yellow-200">
-                  456 Ocean Drive,<br />
-                  Bondi Beach, Sydney,<br />
-                  NSW, Australia
-                </p>
+          <!-- Top Row: Branch Locations & Quick Links (Side by Side on Mobile) -->
+          <div class="flex flex-col sm:flex-row justify-between w-full">
+            <!-- Locations Section -->
+            <div class="sm:w-1/2 mb-6 sm:mb-0 flex items-start">
+              <div class="mr-4">
+                <!-- Location Icon -->
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-8 w-8 text-yellow-300"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12 5 9 6.343 9 8s1.343 3 3 3z"
+                  ></path>
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 11c-2.21 0-4 1.79-4 4 0 2.21 4 7 4 7s4-4.79 4-7c0-2.21-1.79-4-4-4z"
+                  ></path>
+                </svg>
               </div>
+              <div>
+                <p class="font-semibold">India Branch</p>
+                <p class="text-sm text-yellow-200">
+                  123 Main Street,<br />
+                  Andheri, Mumbai,<br />
+                  Maharashtra, India
+                </p>
+                <div class="mt-4">
+                  <p class="font-semibold">Australia Branch</p>
+                  <p class="text-sm text-yellow-200">
+                    456 Ocean Drive,<br />
+                    Bondi Beach, Sydney,<br />
+                    NSW, Australia
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Links Section -->
+            <div class="sm:w-1/2 text-right">
+              <p class="font-semibold mb-2">Quick Links</p>
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    href="/process"
+                    class="text-sm hover:text-yellow-300 transition-colors duration-200"
+                    >Process</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/cart"
+                    class="text-sm hover:text-yellow-300 transition-colors duration-200"
+                    >Cart</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="/"
+                    class="text-sm hover:text-yellow-300 transition-colors duration-200"
+                    >Home</a
+                  >
+                </li>
+              </ul>
             </div>
           </div>
 
-          <!-- Center Column: Social Media Links (Always Vertical) -->
-          <div class="mb-6 md:mb-0 flex flex-col items-center space-y-4">
+          <!-- Social Media Icons (Always Vertical) -->
+          <div class="mt-6 flex flex-col items-center space-y-4">
             <a
               href="https://www.instagram.com"
               target="_blank"
@@ -185,34 +215,6 @@ import "../styles/global.css";
                 ></path>
               </svg>
             </a>
-          </div>
-
-          <!-- Right Column: Pages Section (Hidden on Mobile) -->
-          <div class="hidden md:block text-right">
-            <p class="font-semibold mb-2">Quick Links</p>
-            <ul class="space-y-2">
-              <li>
-                <a
-                  href="/process"
-                  class="text-sm hover:text-yellow-300 transition-colors duration-200"
-                  >Process</a
-                >
-              </li>
-              <li>
-                <a
-                  href="/cart"
-                  class="text-sm hover:text-yellow-300 transition-colors duration-200"
-                  >Cart</a
-                >
-              </li>
-              <li>
-                <a
-                  href="/"
-                  class="text-sm hover:text-yellow-300 transition-colors duration-200"
-                  >Home</a
-                >
-              </li>
-            </ul>
           </div>
         </div>
 
