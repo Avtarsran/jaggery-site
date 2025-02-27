@@ -3,7 +3,7 @@
     "id": "dark-brown",
     "name": "Dark Brown Jaggery",
     "description": "Rich, dark jaggery with a deep flavor. Perfect for traditional recipes and healthy alternatives to sugar.",
-    "image": "/images/dark-brown.jpg",
+    "image": "/JEMA BRY 1900-04.jpg",
     "price": "250",
     "ingredients": "100% pure sugarcane jaggery.",
     "usage": "Use in tea, coffee, desserts, or traditional recipes.",
@@ -13,7 +13,7 @@
     "id": "dark-gold",
     "name": "Dark Gold Jaggery",
     "description": "Smooth and aromatic jaggery with a golden hue. Ideal for desserts and beverages.",
-    "image": "/images/dark-gold.jpg",
+    "image": "/6939813.jpg",
     "price": "300",
     "ingredients": "100% pure sugarcane jaggery.",
     "usage": "Use in sweets, beverages, or as a sugar substitute.",
@@ -23,10 +23,11 @@
     "id": "jaggery-powder",
     "name": "Jaggery Powder",
     "description": "Finely ground jaggery for easy use in recipes. A healthy substitute for refined sugar.",
-    "image": "/images/jaggery-powder.jpg",
+    "image": "/healthy-jaggery-still-life-arrangement.jpg",
     "price": "200",
     "ingredients": "100% pure sugarcane jaggery.",
     "usage": "Use in baking, smoothies, or as a sweetener.",
     "storage": "Store in an airtight container."
   }
 ]
+
