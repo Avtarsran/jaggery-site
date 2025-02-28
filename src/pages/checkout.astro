@@ -1,0 +1,151 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <section class="py-20 bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-6">
+      <h1 class="text-4xl font-bold text-center text-yellow-900 mb-10">
+        Checkout
+      </h1>
+
+      <!-- Checkout Form & Cart Summary -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Left: Order Summary -->
+        <div class="bg-white shadow-lg rounded-lg p-6">
+          <h2 class="text-2xl font-bold text-yellow-900 mb-4">Order Summary</h2>
+          <div id="checkoutContainer"></div>
+          <div id="checkoutTotalAmount" class="text-lg font-bold text-yellow-900 mt-4">
+            Total: ₹0
+          </div>
+        </div>
+
+        <!-- Right: Billing & Payment Form -->
+        <div class="bg-white shadow-lg rounded-lg p-6">
+          <h2 class="text-2xl font-bold text-yellow-900 mb-4">Billing Details</h2>
+
+          <form id="checkoutForm">
+            <div class="mb-4">
+              <label class="block text-yellow-900 font-semibold mb-2">Full Name</label>
+              <input type="text" id="name" class="w-full p-3 border rounded-lg" required />
+            </div>
+
+            <div class="mb-4">
+              <label class="block text-yellow-900 font-semibold mb-2">Email Address</label>
+              <input type="email" id="email" class="w-full p-3 border rounded-lg" required />
+            </div>
+
+            <div class="mb-4">
+              <label class="block text-yellow-900 font-semibold mb-2">Shipping Address</label>
+              <textarea id="address" class="w-full p-3 border rounded-lg" rows="3" required></textarea>
+            </div>
+
+            <div class="mb-4">
+              <label class="block text-yellow-900 font-semibold mb-2">Payment Method</label>
+              <select id="paymentMethod" class="w-full p-3 border rounded-lg">
+                <option value="card">Credit/Debit Card</option>
+                <option value="upi">UPI</option>
+                <option value="cod">Cash on Delivery</option>
+              </select>
+            </div>
+
+            <button type="submit" id="payNowButton" class="w-full bg-green-500 hover:bg-green-600 transition-colors text-white px-6 py-3 rounded-lg">
+              Pay Now
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Checkout Script -->
+  <!-- @ts-ignore -->
+  <script client:load is:inline>
+    document.addEventListener("DOMContentLoaded", () => {
+      const checkoutContainer = document.getElementById("checkoutContainer");
+      const checkoutTotalAmount = document.getElementById("checkoutTotalAmount");
+      const checkoutForm = document.getElementById("checkoutForm");
+
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+      // Function to calculate total amount
+      function calculateTotalAmount() {
+        return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+      }
+
+      // Function to update total amount displayed
+      function updateTotalAmount() {
+        checkoutTotalAmount.innerText = `Total: ₹${calculateTotalAmount()}`;
+      }
+
+      // Function to render checkout items
+      function renderCheckout() {
+        checkoutContainer.innerHTML = "";
+
+        if (cart.length === 0) {
+          checkoutContainer.innerHTML = "<p class='text-center text-lg text-yellow-600 my-6'>Your cart is empty! <a href='/' class='text-blue-500'>Go back to shop</a></p>";
+          checkoutTotalAmount.innerText = "Total: ₹0";
+          return;
+        }
+
+        cart.forEach((item, index) => {
+          const itemDiv = document.createElement("div");
+          itemDiv.className = "flex items-center justify-between border-b pb-3 mb-3";
+
+          itemDiv.innerHTML = `
+            <div class="flex items-center">
+              <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded-lg mr-4" />
+              <div>
+                <h2 class="text-lg font-bold text-yellow-900">${item.name}</h2>
+                <p class="text-yellow-800">Price: ₹${item.price}</p>
+                <p class="text-yellow-800">Quantity: ${item.quantity}</p>
+              </div>
+            </div>
+            <button class="remove-btn bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded-lg" data-index="${index}">
+              Remove
+            </button>
+          `;
+          checkoutContainer.appendChild(itemDiv);
+        });
+
+        updateTotalAmount();
+
+        // Attach event listeners to all remove buttons
+        document.querySelectorAll(".remove-btn").forEach((button) => {
+          button.addEventListener("click", (e) => {
+            const index = parseInt(e.target.getAttribute("data-index"), 10);
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            renderCheckout();
+          });
+        });
+      }
+
+      // Render cart on page load
+      renderCheckout();
+
+      // Handle Form Submission
+      checkoutForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const address = document.getElementById("address").value.trim();
+        const paymentMethod = document.getElementById("paymentMethod").value;
+
+        if (!name || !email || !address) {
+          alert("Please fill in all required details.");
+          return;
+        }
+
+        alert(`Payment Successful! \nName: ${name}\nEmail: ${email}\nAddress: ${address}\nPayment: ${paymentMethod}\nTotal: ₹${calculateTotalAmount()}`);
+
+        // Clear cart after successful payment
+        localStorage.removeItem("cart");
+
+        // Redirect to a success page or home
+        window.location.href = "/";
+      });
+    });
+  </script>
+</Layout>

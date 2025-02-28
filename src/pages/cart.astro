@@ -130,7 +130,8 @@ import Layout from "../layouts/Layout.astro";
           alert("Your cart is empty!");
         } else {
           const totalAmount = calculateTotalAmount();
-          alert(`Proceeding to checkout...\nTotal Amount: ₹${totalAmount}`);
+          // alert(`Proceeding to checkout...\nTotal Amount: ₹${totalAmount}`);
+          window.location.href = "/checkout";
           // For example, you might redirect to your checkout page:
           // window.location.href = "/checkout";
         }
