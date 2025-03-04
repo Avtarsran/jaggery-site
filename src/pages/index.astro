@@ -4,19 +4,21 @@ import products from "../data/products.json";
 ---
 
 <Layout>
-  <section class="relative py-20 bg-cover bg-center" 
-  style="background-image: url('/healthy-jaggery-still-life-arrangement.jpg'); background-blend-mode: multiply; background-color: rgba(0, 0, 0, 0.5);">
-  <div class="relative container mx-auto text-center text-white py-16">
-    <h1 class="text-5xl font-bold">Welcome to Jaggery Delight</h1>
-    <p class="mt-4 text-lg">Natural, Healthy, and Delicious</p>
-    <a href="/" class="mt-8 inline-block bg-yellow-500 text-white px-6 py-3 rounded-lg hover:bg-yellow-600 transition">
-      Explore Products
-    </a>
-  </div>
-</section>
-
-  
-
+  <section
+    class="relative py-20 bg-cover bg-center"
+    style="background-image: url('/factory-image-4.jpg'); background-blend-mode: multiply; background-color: rgba(0, 0, 0, 0.5);"
+  >
+    <div class="relative container mx-auto text-center text-white py-16">
+      <h1 class="text-5xl font-bold">Welcome to Jaggery Delight</h1>
+      <p class="mt-4 text-lg">Natural, Healthy, and Delicious</p>
+      <a
+        href="/"
+        class="mt-8 inline-block bg-yellow-500 text-white px-6 py-3 rounded-lg hover:bg-yellow-600 transition"
+      >
+        Explore Products
+      </a>
+    </div>
+  </section>
 
   <!-- Product Showcase Section -->
   <section class="py-16">
@@ -31,7 +33,7 @@ import products from "../data/products.json";
               <img
                 src={product.image}
                 alt={product.name}
-                class="w-full h-48 object-cover rounded-lg"
+                class="w-full h-64 object-cover rounded-lg"
               />
               <h3 class="text-xl font-bold text-yellow-900 mt-4">
                 {product.name}
@@ -43,7 +45,7 @@ import products from "../data/products.json";
                 href={`/products/${product.id}`}
                 class="mt-4 inline-block bg-yellow-500 text-white px-6 py-2 rounded-lg text-center"
               >
-                View More
+                Buy Now
               </a>
             </div>
           ))
@@ -54,31 +56,32 @@ import products from "../data/products.json";
 
   <!-- About Section -->
   <section class="bg-yellow-50 py-16">
-    <div class="container mx-auto text-center max-w-5xl">
+    <div class="container mx-auto text-center max-w-6xl">
       <h2 class="text-4xl font-extrabold text-yellow-900 tracking-wide">
-        Pure. Natural. Authentic.
+        Australia’s First Jaggery Producer
       </h2>
       <p class="text-yellow-700 text-lg mt-2">
-        Experience the richness of traditional jaggery made with care.
+        Established in 2024 | Innovating Jaggery Production with Automation &
+        Scientific Precision
       </p>
 
       <!-- Content Wrapper -->
       <div class="mt-12 flex flex-col md:flex-row items-center gap-10">
-        <!-- Left: Jaggery Image Grid -->
+        <!-- Left: Image Grid -->
         <div class="flex-1 grid grid-cols-2 gap-4 mx-2">
           <img
-            src="healthy-jaggery-still-life-arrangement.jpg"
+            src="jaggery-powder-2.jpg"
             alt="Natural Jaggery"
             class="w-full h-56 object-cover rounded-xl shadow-lg transform hover:scale-105 transition"
           />
           <img
-            src="6939813.jpg"
+            src="jaggery-brown-2.jpg"
             alt="Organic Jaggery Blocks"
             class="w-full h-56 object-cover rounded-xl shadow-lg transform hover:scale-105 transition"
           />
         </div>
 
-        <!-- Right: Text Card -->
+        <!-- Right: About Card -->
         <div
           class="bg-white p-8 mx-4 rounded-2xl shadow-2xl flex-1 border-l-8 border-yellow-500"
         >
@@ -86,16 +89,89 @@ import products from "../data/products.json";
             About Jaggery Delight
           </h3>
           <p class="mt-4 text-yellow-800 leading-relaxed">
-            At <span class="font-semibold">Jaggery Delight</span>, we take pride
-            in crafting **pure, unrefined, and chemical-free jaggery** using
-            traditional methods. With **branches in India & Australia**, we
-            deliver a farm-to-table experience, ensuring every bite is
-            **nutrient-rich and delicious**.
+            At <span class="font-semibold">Jaggery Delight</span>, we are
+            pioneers in crafting
+            <strong>pure, unrefined, and chemical-free jaggery</strong> using an
+            innovative
+            <strong>scientifically controlled</strong> process. We developed an
+            <strong>automated manufacturing process</strong>, ensuring high
+            quality while preserving the natural essence of sugarcane.
           </p>
           <p class="mt-4 text-yellow-800 font-semibold italic">
-            100% Natural. 100% Healthy. Loved by Customers Worldwide.
+            100% Wholesome. 100% Healthy. A Smarter Alternative to Sugar.
           </p>
         </div>
+      </div>
+
+      <!-- Our Team Section -->
+      <div class="mt-16 mx-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+        <div
+          class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center"
+        >
+          <img
+            src="https://cdn.iconscout.com/icon/free/png-512/free-profile-icon-download-in-svg-png-gif-file-formats--user-avatar-account-man-people-iconly-essential-icons-pack-interface-2036107.png?f=webp&w=512"
+            alt="Brendan Rich"
+            class="w-32 h-32 rounded-full shadow-md"
+          />
+          <h4 class="text-xl font-bold text-yellow-900 mt-4">Brendan Rich</h4>
+          <p class="text-yellow-700 text-center">
+            Production Manager, Tully Sugar
+          </p>
+          <p class="text-yellow-700 text-center mt-2">
+            28 years in the sugar industry, awarded the <strong
+              >President’s Medal from ASSCT</strong
+            >.
+          </p>
+        </div>
+        <div
+          class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center"
+        >
+          <img
+            src="https://cdn.iconscout.com/icon/free/png-512/free-profile-icon-download-in-svg-png-gif-file-formats--user-avatar-account-man-people-iconly-essential-icons-pack-interface-2036107.png?f=webp&w=512"
+            alt="Arjun Singh"
+            class="w-32 h-32 rounded-full shadow-md"
+          />
+          <h4 class="text-xl font-bold text-yellow-900 mt-4">Arjun Singh</h4>
+          <p class="text-yellow-700 text-center">Mechanical Engineer</p>
+          <p class="text-yellow-700 text-center mt-2">
+            2 years of experience in the sugar industry.
+          </p>
+        </div>
+        <div
+          class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center"
+        >
+          <img
+            src="https://cdn.iconscout.com/icon/free/png-512/free-profile-icon-download-in-svg-png-gif-file-formats--user-avatar-account-man-people-iconly-essential-icons-pack-interface-2036107.png?f=webp&w=512"
+            alt="Arundeep Singh"
+            class="w-32 h-32 rounded-full shadow-md"
+          />
+          <h4 class="text-xl font-bold text-yellow-900 mt-4">Arundeep Singh</h4>
+          <p class="text-yellow-700 text-center">Co-Founder</p>
+          <p class="text-yellow-700 text-center mt-2">
+            Passionate about revolutionizing natural sweeteners.
+          </p>
+        </div>
+      </div>
+
+      <!-- Mission Statement -->
+      <div
+        class="mt-16 mx-4 bg-white p-8 rounded-2xl shadow-lg border-l-8 border-yellow-500"
+      >
+        <h3 class="text-2xl font-semibold text-yellow-900">
+          Our Mission & Vision
+        </h3>
+        <p class="mt-4 text-yellow-800">
+          Our mission is to <strong
+            >provide a healthier alternative to refined sugar</strong
+          > and improve consumer health.
+        </p>
+        <p class="mt-2 text-yellow-800">
+          Unlike raw, brown, or white sugar, <strong
+            >gold sugar (jaggery)</strong
+          > does not spike insulin levels drastically.
+          <strong>Gold sugar is 100% wholesome sugarcane sugar</strong>, making
+          it the best form of sugar available.
+        </p>
       </div>
     </div>
   </section>

@@ -2,32 +2,97 @@
   {
     "id": "dark-brown",
     "name": "Dark Brown Jaggery",
-    "description": "Rich, dark jaggery with a deep flavor. Perfect for traditional recipes and healthy alternatives to sugar.",
-    "image": "/JEMA BRY 1900-04.jpg",
+    "description": "Rich, dark jaggery with a deep, molasses-like flavor. Perfect for traditional recipes and a natural alternative to refined sugar.",
+    "image": "/jaggery-brown-2.jpg",
+    "images": ["/jaggery-brown-1.jpg", "/jaggery-brown-2.jpg", "/jaggery-brown-3.jpg"],
     "price": "250",
-    "ingredients": "100% pure sugarcane jaggery.",
-    "usage": "Use in tea, coffee, desserts, or traditional recipes.",
-    "storage": "Store in a cool, dry place."
+    "ingredients": "100% pure sugarcane jaggery, No preservatives, No chemicals.",
+    "sourcing": "Sourced from organic sugarcane farms in Maharashtra, India.",
+    "certifications": ["Organic Certified", "FSSAI Approved", "Non-GMO"],
+    "nutritional_value": {
+      "energy": "383 kcal",
+      "carbohydrates": "97g",
+      "protein": "0.4g",
+      "calcium": "80mg",
+      "iron": "11mg",
+      "potassium": "1056mg"
+    },
+    "health_benefits": [
+      "Rich in iron, helps prevent anemia",
+      "Boosts immunity with natural antioxidants",
+      "Aids digestion and detoxifies the liver",
+      "Regulates body temperature and keeps the body warm in winter"
+    ],
+    "recommended_uses": [
+      "Use in tea, coffee, and warm beverages as a natural sweetener",
+      "Ideal for making Indian sweets like chikki and til ladoo",
+      "Add to marinades for a deep, caramelized flavor"
+    ],
+    "storage": "Store in an airtight container in a cool, dry place.",
+    "shelf_life": "Best before 9 months from the date of packaging."
   },
   {
     "id": "dark-gold",
     "name": "Dark Gold Jaggery",
-    "description": "Smooth and aromatic jaggery with a golden hue. Ideal for desserts and beverages.",
-    "image": "/6939813.jpg",
+    "description": "Smooth and aromatic jaggery with a golden hue. Ideal for desserts, beverages, and baking.",
+    "image": "/jaggery-golden-3.jpg",
+    "images": ["/jaggery-golden-1.jpg", "/jaggery-golden-2.jpg", "/jaggery-golden-3.jpg"],
     "price": "300",
-    "ingredients": "100% pure sugarcane jaggery.",
-    "usage": "Use in sweets, beverages, or as a sugar substitute.",
-    "storage": "Store in a cool, dry place."
+    "ingredients": "100% pure sugarcane jaggery, No preservatives, No artificial colors.",
+    "sourcing": "Harvested from organic sugarcane fields in Karnataka, India.",
+    "certifications": ["Organic Certified", "FSSAI Approved", "Vegan"],
+    "nutritional_value": {
+      "energy": "380 kcal",
+      "carbohydrates": "96g",
+      "protein": "0.3g",
+      "calcium": "75mg",
+      "iron": "9mg",
+      "potassium": "990mg"
+    },
+    "health_benefits": [
+      "Acts as a natural blood purifier",
+      "Enhances digestion and prevents bloating",
+      "Rich in essential minerals for bone strength",
+      "Helps boost metabolism and control weight"
+    ],
+    "recommended_uses": [
+      "Perfect for baking cakes, cookies, and energy bars",
+      "Adds a rich caramelized taste to smoothies and shakes",
+      "Use in traditional drinks like buttermilk or lemonade"
+    ],
+    "storage": "Store in a dry place away from direct sunlight.",
+    "shelf_life": "Best before 8 months from the date of packaging."
   },
   {
     "id": "jaggery-powder",
     "name": "Jaggery Powder",
-    "description": "Finely ground jaggery for easy use in recipes. A healthy substitute for refined sugar.",
-    "image": "/healthy-jaggery-still-life-arrangement.jpg",
+    "description": "Finely ground jaggery for easy use in recipes. A healthier substitute for refined sugar.",
+    "image": "/jaggery-powder-2.jpg",
+    "images": ["/jaggery-powder-1.jpg","/jaggery-powder-2.jpg"],
     "price": "200",
-    "ingredients": "100% pure sugarcane jaggery.",
-    "usage": "Use in baking, smoothies, or as a sweetener.",
-    "storage": "Store in an airtight container."
+    "ingredients": "100% natural jaggery, No preservatives, No added flavors.",
+    "sourcing": "Handmade from sun-dried sugarcane juice in Punjab, India.",
+    "certifications": ["Organic Certified", "FSSAI Approved", "No Preservatives"],
+    "nutritional_value": {
+      "energy": "377 kcal",
+      "carbohydrates": "95g",
+      "protein": "0.5g",
+      "calcium": "82mg",
+      "iron": "10mg",
+      "potassium": "1100mg"
+    },
+    "health_benefits": [
+      "Eases constipation and supports digestion",
+      "Rich in essential minerals for energy production",
+      "Helps in detoxification and cleansing of the liver",
+      "Balances acidity and boosts gut health"
+    ],
+    "recommended_uses": [
+      "Perfect replacement for sugar in baking and cooking",
+      "Use in protein shakes or smoothie bowls",
+      "Ideal for sprinkling over oats, cereal, or yogurt"
+    ],
+    "storage": "Store in a sealed jar in a cool, dry place.",
+    "shelf_life": "Best before 12 months from the date of packaging."
   }
 ]
-
