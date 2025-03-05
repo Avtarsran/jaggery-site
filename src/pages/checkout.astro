@@ -3,7 +3,7 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <section class="py-20 bg-gray-100 min-h-screen">
+  <section class="py-20 bg-gray-100 min-h-screen" id="checkoutSection">
     <div class="container mx-auto px-6">
       <h1 class="text-4xl font-bold text-center text-yellow-900 mb-10">
         Checkout
@@ -15,62 +15,118 @@ import Layout from "../layouts/Layout.astro";
         <div class="bg-white shadow-lg rounded-lg p-6">
           <h2 class="text-2xl font-bold text-yellow-900 mb-4">Order Summary</h2>
           <div id="checkoutContainer"></div>
-          <div id="checkoutTotalAmount" class="text-lg font-bold text-yellow-900 mt-4">
+          <div
+            id="checkoutTotalAmount"
+            class="text-lg font-bold text-yellow-900 mt-4"
+          >
             Total: ₹0
           </div>
         </div>
 
         <!-- Right: Billing & Payment Form -->
-        <div class="bg-white shadow-lg rounded-lg p-6">
-          <h2 class="text-2xl font-bold text-yellow-900 mb-4">Billing Details</h2>
+        <div>
+          <div class="bg-white shadow-lg rounded-lg p-6">
+            <h2 class="text-2xl font-bold text-yellow-900 mb-4">
+              Billing Details
+            </h2>
 
-          <form id="checkoutForm">
-            <div class="mb-4">
-              <label class="block text-yellow-900 font-semibold mb-2">Full Name</label>
-              <input type="text" id="name" class="w-full p-3 border rounded-lg" required />
-            </div>
+            <form id="checkoutForm">
+              <div class="mb-4">
+                <label class="block text-yellow-900 font-semibold mb-2"
+                  >Full Name</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  class="w-full p-3 border rounded-lg"
+                  required
+                />
+              </div>
 
-            <div class="mb-4">
-              <label class="block text-yellow-900 font-semibold mb-2">Email Address</label>
-              <input type="email" id="email" class="w-full p-3 border rounded-lg" required />
-            </div>
+              <div class="mb-4">
+                <label class="block text-yellow-900 font-semibold mb-2"
+                  >Email Address</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  class="w-full p-3 border rounded-lg"
+                  required
+                />
+              </div>
 
-            <div class="mb-4">
-              <label class="block text-yellow-900 font-semibold mb-2">Shipping Address</label>
-              <textarea id="address" class="w-full p-3 border rounded-lg" rows="3" required></textarea>
-            </div>
+              <div class="mb-4">
+                <label class="block text-yellow-900 font-semibold mb-2"
+                  >Shipping Address</label
+                >
+                <textarea
+                  id="address"
+                  class="w-full p-3 border rounded-lg"
+                  rows="3"
+                  required></textarea>
+              </div>
 
-            <div class="mb-4">
-              <label class="block text-yellow-900 font-semibold mb-2">Payment Method</label>
-              <select id="paymentMethod" class="w-full p-3 border rounded-lg">
-                <option value="card">Credit/Debit Card</option>
-                <option value="upi">UPI</option>
-                <option value="cod">Cash on Delivery</option>
-              </select>
-            </div>
+              <div class="mb-4">
+                <label class="block text-yellow-900 font-semibold mb-2"
+                  >Payment Method</label
+                >
+                <select id="paymentMethod" class="w-full p-3 border rounded-lg">
+                  <option value="card">Credit/Debit Card</option>
+                  <option value="upi">UPI</option>
+                  <option value="cod">Cash on Delivery</option>
+                </select>
+              </div>
 
-            <button type="submit" id="payNowButton" class="w-full bg-green-500 hover:bg-green-600 transition-colors text-white px-6 py-3 rounded-lg">
-              Pay Now
-            </button>
-          </form>
+              <button
+                type="submit"
+                id="payNowButton"
+                class="w-full bg-green-500 hover:bg-green-600 transition-colors text-white px-6 py-3 rounded-lg"
+              >
+                Pay Now
+              </button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </section>
+  <div
+    id="paymentMessage"
+    class="hidden fixed inset-0 flex items-center justify-center bg-green-100 text-center p-6"
+  >
+    <div
+      class="bg-white shadow-xl rounded-2xl px-8 py-12 max-w-md mx-auto border-t-8 border-green-500"
+    >
+      <!-- Success Icon -->
+      <div class="text-green-600 text-6xl">✅</div>
+
+      <!-- Success Message -->
+      <h2 class="text-3xl font-bold text-gray-800 mt-4">Payment Successful!</h2>
+      <p class="text-gray-700 mt-2">
+        Your order has been placed successfully. 🎉 You will receive a
+        confirmation email soon.
+      </p>
+    </div>
+  </div>
 
   <!-- Checkout Script -->
   <!-- @ts-ignore -->
   <script client:load is:inline>
     document.addEventListener("DOMContentLoaded", () => {
       const checkoutContainer = document.getElementById("checkoutContainer");
-      const checkoutTotalAmount = document.getElementById("checkoutTotalAmount");
+      const checkoutTotalAmount = document.getElementById(
+        "checkoutTotalAmount"
+      );
       const checkoutForm = document.getElementById("checkoutForm");
 
       let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
       // Function to calculate total amount
       function calculateTotalAmount() {
-        return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+        return cart.reduce(
+          (total, item) => total + item.price * item.quantity,
+          0
+        );
       }
 
       // Function to update total amount displayed
@@ -83,14 +139,16 @@ import Layout from "../layouts/Layout.astro";
         checkoutContainer.innerHTML = "";
 
         if (cart.length === 0) {
-          checkoutContainer.innerHTML = "<p class='text-center text-lg text-yellow-600 my-6'>Your cart is empty! <a href='/' class='text-blue-500'>Go back to shop</a></p>";
+          checkoutContainer.innerHTML =
+            "<p class='text-center text-lg text-yellow-600 my-6'>Your cart is empty! <a href='/' class='text-blue-500'>Go back to shop</a></p>";
           checkoutTotalAmount.innerText = "Total: ₹0";
           return;
         }
 
         cart.forEach((item, index) => {
           const itemDiv = document.createElement("div");
-          itemDiv.className = "flex items-center justify-between border-b pb-3 mb-3";
+          itemDiv.className =
+            "flex items-center justify-between border-b pb-3 mb-3";
 
           itemDiv.innerHTML = `
             <div class="flex items-center">
@@ -138,13 +196,22 @@ import Layout from "../layouts/Layout.astro";
           return;
         }
 
-        alert(`Payment Successful! \nName: ${name}\nEmail: ${email}\nAddress: ${address}\nPayment: ${paymentMethod}\nTotal: ₹${calculateTotalAmount()}`);
+        const paymentMessage = document.getElementById("paymentMessage");
+        paymentMessage.classList.remove("hidden");
+        const checkoutSection = document.getElementById("checkoutSection");
+        checkoutSection.classList.add("hidden");
+
+        // Hide Message After 1 Second
+        setTimeout(() => {
+          paymentMessage.classList.add("hidden");
+          checkoutSection.classList.remove("hidden");
+          window.location.href = "/";
+        }, 2000);
 
         // Clear cart after successful payment
         localStorage.removeItem("cart");
 
         // Redirect to a success page or home
-        window.location.href = "/";
       });
     });
   </script>

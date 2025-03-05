@@ -24,9 +24,9 @@
       "Regulates body temperature and keeps the body warm in winter"
     ],
     "recommended_uses": [
-      "Use in tea, coffee, and warm beverages as a natural sweetener",
-      "Ideal for making Indian sweets like chikki and til ladoo",
-      "Add to marinades for a deep, caramelized flavor"
+      { "text": "Use in tea, coffee, and warm beverages", "emoji": "☕" },
+      { "text": "Ideal for making Indian sweets like chikki and til ladoo", "emoji": "🍬" },
+      { "text": "Add to marinades for a deep, caramelized flavor", "emoji": "🍖" }
     ],
     "storage": "Store in an airtight container in a cool, dry place.",
     "shelf_life": "Best before 9 months from the date of packaging."
@@ -56,9 +56,9 @@
       "Helps boost metabolism and control weight"
     ],
     "recommended_uses": [
-      "Perfect for baking cakes, cookies, and energy bars",
-      "Adds a rich caramelized taste to smoothies and shakes",
-      "Use in traditional drinks like buttermilk or lemonade"
+      { "text": "Perfect for baking cakes, cookies, and energy bars", "emoji": "🎂" },
+      { "text": "Adds a rich caramelized taste to smoothies and shakes", "emoji": "🍯" },
+      { "text": "Use in traditional drinks like buttermilk or lemonade", "emoji": "🥛" }
     ],
     "storage": "Store in a dry place away from direct sunlight.",
     "shelf_life": "Best before 8 months from the date of packaging."
@@ -88,9 +88,9 @@
       "Balances acidity and boosts gut health"
     ],
     "recommended_uses": [
-      "Perfect replacement for sugar in baking and cooking",
-      "Use in protein shakes or smoothie bowls",
-      "Ideal for sprinkling over oats, cereal, or yogurt"
+      { "text": "Perfect replacement for sugar in baking and cooking", "emoji": "🍞" },
+      { "text": "Use in protein shakes or smoothie bowls", "emoji": "🥤" },
+      { "text": "Ideal for sprinkling over oats, cereal, or yogurt", "emoji": "🥣" }
     ],
     "storage": "Store in a sealed jar in a cool, dry place.",
     "shelf_life": "Best before 12 months from the date of packaging."

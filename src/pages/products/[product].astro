@@ -61,9 +61,12 @@ const { productData } = Astro.props;
         </p>
 
         <!-- Quantity & Add to Cart -->
-        <div class="mt-6 flex space-x-4 items-center">
+        <div
+          class="mt-6 flex flex-col md:flex-row items-center md:space-x-4 space-y-4 md:space-y-0 w-full"
+        >
+          <!-- Quantity Selector -->
           <div
-            class="border border-yellow-400 rounded-full bg-yellow-50 px-4 py-2"
+            class="border border-yellow-400 rounded-full bg-yellow-50 px-4 py-2 flex items-center"
           >
             <label for="quantity" class="mr-2 font-semibold text-yellow-900"
               >Qty:</label
@@ -75,12 +78,23 @@ const { productData } = Astro.props;
               {[1, 2, 3, 4, 5].map((num) => <option value={num}>{num}</option>)}
             </select>
           </div>
+
+          <!-- Add to Cart Button -->
           <button
             id="addToCartButton"
-            class="bg-yellow-600 hover:bg-yellow-700 text-white text-lg px-6 py-3 rounded-full shadow-lg hover:scale-105 transition-all"
+            data-product={JSON.stringify(productData)}
+            class="bg-yellow-600 hover:bg-yellow-700 text-white text-lg px-6 py-3 rounded-full shadow-lg hover:scale-105 transition-all w-full md:w-auto"
           >
             🛒 Add to Cart
           </button>
+
+          <!-- Cart Message (Hidden by Default) -->
+          <div
+            id="cartMessage"
+            class="hidden bg-green-600 text-white px-4 py-2 rounded-lg shadow-lg"
+          >
+            ✅ Added to cart!
+          </div>
         </div>
 
         <!-- Additional Information -->
@@ -124,6 +138,30 @@ const { productData } = Astro.props;
             }
           </ul>
         </div>
+
+        <!-- Recommended Uses Section -->
+        <div
+          class="mt-12 bg-yellow-50 p-8 rounded-2xl shadow-lg border-l-8 border-yellow-500"
+        >
+          <h3 class="text-2xl font-bold text-yellow-900 text-center">
+            ✨ How to Use Jaggery
+          </h3>
+
+          <!-- Uses Carousel -->
+          <div
+            id="usesCarousel"
+            class="mt-6 flex overflow-x-auto space-x-4 p-4 snap-x scrollbar-hide"
+          >
+          {
+            productData.recommended_uses.map((use) => (
+            <div class="min-w-[250px] bg-white shadow-md rounded-xl p-6 flex flex-col items-center text-center snap-center">
+                <div class="text-5xl">{use.emoji}</div>
+                <h4 class="text-lg font-semibold text-yellow-900 mt-4">{use.text}</h4>
+              </div>
+            ))
+          }
+          </div>
+        </div>
       </div>
     </div>
 
@@ -150,10 +188,16 @@ const { productData } = Astro.props;
                 <h3 class="text-xl font-bold text-yellow-900 mt-4 text-center">
                   {product.name}
                 </h3>
-                <p class="mt-2 text-xl text-bold text-yellow-800 text-center">₹{product.price}</p>
-                <p class="mt-2 text-yellow-800 text-center">{product.description}</p>
-                <p class="mt-4 bg-yellow-500 text-white px-6 py-2 rounded-lg text-center">Buy Now</p>
-                </a>
+                <p class="mt-2 text-xl text-bold text-yellow-800 text-center">
+                  ₹{product.price}
+                </p>
+                <p class="mt-2 text-yellow-800 text-center">
+                  {product.description}
+                </p>
+                <p class="mt-4 bg-yellow-500 text-white px-6 py-2 rounded-lg text-center">
+                  Buy Now
+                </p>
+              </a>
             ))
         }
       </div>
@@ -167,6 +211,7 @@ const { productData } = Astro.props;
   function changeImage(src) {
     document.getElementById("mainImage").src = src;
   }
+
   document.addEventListener("DOMContentLoaded", () => {
     const addToCartButton = document.getElementById("addToCartButton");
     const quantitySelect = document.getElementById("quantity");
@@ -193,7 +238,6 @@ const { productData } = Astro.props;
       console.error("Error parsing product data:", error);
       return;
     }
-    console.log("Product Data:", productData);
 
     addToCartButton.addEventListener("click", () => {
       console.log("Add to Cart button clicked");
@@ -204,7 +248,6 @@ const { productData } = Astro.props;
       }
       // Retrieve existing cart from localStorage or initialize an empty array
       const cart = JSON.parse(localStorage.getItem("cart")) || [];
-      console.log("Current cart:", cart);
 
       // Check if the product is already in the cart
       const existingProductIndex = cart.findIndex(
@@ -227,7 +270,14 @@ const { productData } = Astro.props;
       // Save updated cart to localStorage
       localStorage.setItem("cart", JSON.stringify(cart));
       console.log("Updated cart:", cart);
-      alert(`${productData.name} added to cart!`);
+
+      const cartMessage = document.getElementById("cartMessage");
+      cartMessage.classList.remove("hidden");
+
+      // Hide Message After 1 Second
+      setTimeout(() => {
+        cartMessage.classList.add("hidden");
+      }, 2000);
 
       // Update the cart count (if applicable)
       function updateCartCount() {

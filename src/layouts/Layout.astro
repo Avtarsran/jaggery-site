@@ -228,6 +228,24 @@ import "../styles/global.css";
         </div>
       </div>
     </footer>
+    <!-- @ts-ignore -->
+    <script client:load is:inline>
+      window.addEventListener("DOMContentLoaded",()=>{
+        function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const totalQuantity = cart.reduce(
+          (sum, item) => sum + (item.quantity || 0),
+          0
+        );
+        const cartCountEl = document.getElementById("cartCount");
+        if (cartCountEl) {
+          cartCountEl.innerText = totalQuantity;
+        }
+      }
+      updateCartCount();
+      window.addEventListener("storage", updateCartCount);
+    })
+    </script>
   </body>
 </html>
 

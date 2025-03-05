@@ -3,94 +3,93 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-  <!-- Hero Section -->
-  <section class="py-24 bg-yellow-50">
-    <div class="container mx-auto px-6">
-      <h1 class="text-4xl md:text-5xl font-bold text-center text-yellow-900 mb-8">
+  <!-- Hero Section with Background Image -->
+  <section 
+    class="py-24 bg-cover bg-center relative"
+    style="background-image: url('/factory-image-1.jpg'); background-blend-mode: multiply; background-color: rgba(0, 0, 0, 0.5);"
+  >
+    <!-- Overlay for better readability -->
+    <div class="absolute inset-0 bg-transparent bg-opacity-50"></div>
+    <div class="container mx-auto px-6 relative z-10 text-center">
+      <h1 class="text-5xl md:text-6xl font-bold text-white">
         The Art of Making Jaggery
       </h1>
-      <p class="text-lg text-yellow-800 text-center max-w-3xl mx-auto">
-        Discover the natural, time-honored process of crafting jaggery—a pure and healthy alternative to refined sugars. Our traditional methods honor generations of expertise and nature’s bounty.
+      <p class="text-lg text-gray-200 max-w-3xl mx-auto mt-4">
+        Discover the natural, time-honored process of crafting jaggery—a pure and healthy alternative to refined sugars.
       </p>
     </div>
   </section>
 
-  <!-- Process Section with Instagram Video Embed -->
+    <!-- Process Section with Instagram Video Embed -->
+    <section class="py-12 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <!-- Process Description -->
+          <div>
+            <h2 class="text-3xl font-bold text-yellow-900 mb-4">Traditional Process</h2>
+            <p class="text-yellow-800 text-lg mb-4">
+              Our jaggery begins its journey in the open fields where the finest sugarcane is carefully harvested. The fresh juice is extracted using traditional presses and then slowly simmered over natural wood fires.
+            </p>
+            <p class="text-yellow-800 text-lg">
+              As the juice reduces, impurities are skillfully removed, and the rich syrup is poured into handcrafted molds. The result is artisanal blocks of jaggery that encapsulate nature’s pure goodness.
+            </p>
+          </div>
+          <!-- Instagram Video Embed -->
+          <div class="w-full">
+            <!-- Instagram embed block -->
+            <blockquote
+              class="instagram-media rounded-lg shadow-lg"
+              data-instgrm-permalink="https://www.instagram.com/reel/DF41kFOz8Az/?igsh=eXY2ZHd2cnYya2g4"
+              data-instgrm-version="14"
+              style=" background:#FFF; border:0; margin: 1px; max-width:540px; width:100%;"
+            >
+            </blockquote>
+            <script async defer src="//www.instagram.com/embed.js"></script>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <!-- Factory Images Section -->
   <section class="py-12 bg-white">
-    <div class="container mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-        <!-- Process Description -->
-        <div>
-          <h2 class="text-3xl font-bold text-yellow-900 mb-4">Traditional Process</h2>
-          <p class="text-yellow-800 text-lg mb-4">
-            Our jaggery begins its journey in the open fields where the finest sugarcane is carefully harvested. The fresh juice is extracted using traditional presses and then slowly simmered over natural wood fires.
-          </p>
-          <p class="text-yellow-800 text-lg">
-            As the juice reduces, impurities are skillfully removed, and the rich syrup is poured into handcrafted molds. The result is artisanal blocks of jaggery that encapsulate nature’s pure goodness.
-          </p>
-        </div>
-        <!-- Instagram Video Embed -->
-        <div class="w-full">
-          <!-- Instagram embed block -->
-          <blockquote
-            class="instagram-media rounded-lg shadow-lg"
-            data-instgrm-permalink="https://www.instagram.com/reel/DF41kFOz8Az/?igsh=eXY2ZHd2cnYya2g4"
-            data-instgrm-version="14"
-            style=" background:#FFF; border:0; margin: 1px; max-width:540px; width:100%;"
-          >
-          </blockquote>
-          <script async defer src="//www.instagram.com/embed.js"></script>
-        </div>
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold text-yellow-900 mb-6">Our Manufacturing Process</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <img src="/factory-image-2.jpg" alt="Factory 1" class="rounded-lg shadow-md hover:scale-105 transition" />
+        <img src="/factory-image-5.jpg" alt="Factory 2" class="rounded-lg shadow-md hover:scale-105 transition" />
+        <img src="/factory-image-4.jpg" alt="Factory 3" class="rounded-lg shadow-md hover:scale-105 transition" />
+        <img src="/factory-image-3.jpg" alt="Factory 4" class="rounded-lg shadow-md hover:scale-105 transition" />
       </div>
     </div>
   </section>
 
-  <!-- Benefits Section with Cards -->
+  <!-- Benefits Section -->
   <section class="py-24 bg-yellow-50">
     <div class="container mx-auto px-6">
       <h2 class="text-3xl font-bold text-center text-yellow-900 mb-10">
         Benefits of Jaggery & Jaggery Powder
       </h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Card 1 -->
-        <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition-shadow">
+        <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition transform hover:scale-105">
           <div class="flex items-center justify-center mb-4">
-            <!-- Icon could be an SVG here -->
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 1.343-3 3v6h6v-6c0-1.657-1.343-3-3-3z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a9 9 0 100 18 9 9 0 000-18z" />
-            </svg>
+            <span class="text-5xl">💪</span>
           </div>
           <h3 class="text-xl font-bold text-yellow-900 text-center mb-2">Nutrient Rich</h3>
-          <p class="text-yellow-800 text-center">
-            Packed with essential minerals and antioxidants, jaggery is a natural source of iron and vitamins.
-          </p>
+          <p class="text-yellow-800 text-center">Packed with essential minerals and antioxidants.</p>
         </div>
-
-        <!-- Card 2 -->
-        <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition-shadow">
+        <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition transform hover:scale-105">
           <div class="flex items-center justify-center mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 110 20 10 10 0 010-20z" />
-            </svg>
+            <span class="text-5xl">⚡</span>
           </div>
           <h3 class="text-xl font-bold text-yellow-900 text-center mb-2">Natural Energy</h3>
-          <p class="text-yellow-800 text-center">
-            Enjoy sustained energy without the sudden spike and crash associated with refined sugars.
-          </p>
+          <p class="text-yellow-800 text-center">Enjoy sustained energy without sugar crashes.</p>
         </div>
-
-        <!-- Card 3 -->
-        <div class="bg-white rounded-lg shadow-lg p-6 hover:shadow-2xl transition-shadow">
+        <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition transform hover:scale-105">
           <div class="flex items-center justify-center mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-            </svg>
+            <span class="text-5xl">🍯</span>
           </div>
           <h3 class="text-xl font-bold text-yellow-900 text-center mb-2">Versatile Flavor</h3>
-          <p class="text-yellow-800 text-center">
-            Its natural caramel notes enhance both sweet and savory dishes, making it an ideal ingredient in your kitchen.
-          </p>
+          <p class="text-yellow-800 text-center">Enhances both sweet and savory dishes.</p>
         </div>
       </div>
     </div>
