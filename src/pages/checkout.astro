@@ -204,8 +204,8 @@ import Layout from "../layouts/Layout.astro";
         // Hide Message After 1 Second
         setTimeout(() => {
           paymentMessage.classList.add("hidden");
-          checkoutSection.classList.remove("hidden");
           window.location.href = "/";
+          checkoutSection.classList.remove("hidden");
         }, 2000);
 
         // Clear cart after successful payment
