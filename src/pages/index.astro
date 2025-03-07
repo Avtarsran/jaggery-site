@@ -1,69 +1,130 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import products from "../data/products.json";
+  import Layout from "../layouts/Layout.astro";
+  import products from "../data/products.json";
+  const jaggeryBenefits = [
+    { icon: "💪", title: "Rich in Minerals", description: "Jaggery contains iron, magnesium, and potassium, essential for overall health." },
+    { icon: "🩸", title: "Regulates Blood", description: "It helps maintain blood pressure and improves hemoglobin levels naturally." },
+    { icon: "🔥", title: "Boosts Metabolism", description: "Provides slow-releasing energy, unlike sugar, which causes energy crashes." },
+    { icon: "🦷", title: "Good for Teeth", description: "Does not cause tooth decay like refined sugar." },
+  ];
+
+  const sugarDownsides = [
+    { icon: "⚡", title: "Energy Spikes", description: "Causes sudden sugar rush and crashes, leading to fatigue." },
+    { icon: "🩺", title: "Risk of Diabetes", description: "Excess sugar intake is a major contributor to diabetes and obesity." },
+    { icon: "🦷", title: "Tooth Decay", description: "Refined sugar is a leading cause of cavities and gum issues." },
+    { icon: "❌", title: "Zero Nutrients", description: "Unlike jaggery, sugar has no vitamins or minerals." },
+  ];
 ---
 
 <Layout>
-  <section
-    class="relative py-20 bg-cover bg-center"
-    style="background-image: url('/factory-image-4.jpg'); background-blend-mode: multiply; background-color: rgba(0, 0, 0, 0.5);"
-  >
+  <section class="relative py-20 bg-cover bg-center"
+    style="background-image: url('/factory-image-4.jpg'); background-blend-mode: multiply; background-color: rgba(0, 0, 0, 0.5);">
     <div class="relative container mx-auto text-center text-white py-16">
-      <h1 class="text-5xl font-bold">Welcome to Jaggery Delight</h1>
-      <p class="mt-4 text-lg">Natural, Healthy, and Delicious</p>
-      <a
-        href="/"
-        class="mt-8 inline-block bg-yellow-500 text-white px-6 py-3 rounded-lg hover:bg-yellow-600 transition"
-      >
+      <h1 class="text-5xl font-bold">Jaggery, always a better opion than sugar</h1>
+      <p class="mt-4 text-lg">Natural, Healthy and Delicious</p>
+      <a href="/"
+        class="mt-8 inline-block bg-yellow-500 text-white px-6 py-3 rounded-lg hover:bg-yellow-600 transition">
         Explore Products
       </a>
     </div>
   </section>
-  
+
   <!-- Products show case -->
   <section class="py-20 bg-gradient-to-b from-yellow-50 to-white">
     <div class="container mx-auto">
       <h2 class="text-4xl font-extrabold text-yellow-900 text-center mb-10">
         Our Premium Jaggery Products
       </h2>
-      
+
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-6">
         {products.map((product) => (
-          <div class="bg-white p-6 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 ease-in-out transform hover:-translate-y-2 hover:scale-105 flex flex-col">
-            
-            <div class="w-full h-64 overflow-hidden rounded-xl">
-              <img
-                src={product.image}
-                alt={product.name}
-                class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-110"
-              />
-            </div>
-            
-            <div class="flex flex-col flex-grow justify-between mt-5">
-              <div>
-                <h3 class="text-2xl font-bold text-yellow-900">{product.name}</h3>
-                <p class="mt-3 text-yellow-700 text-sm leading-relaxed">
-                  {product.description}
-                </p>
-              </div>
-  
-              <a
-                href={`/products/${product.id}`}
-                class="mt-5 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-500 ease-in-out transform hover:scale-105 text-center"
-              >
-                Buy Now
-              </a>
-            </div>
-            
+        <div
+          class="bg-white p-6 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 ease-in-out transform hover:-translate-y-2 hover:scale-105 flex flex-col">
+
+          <div class="w-full h-64 overflow-hidden rounded-xl">
+            <img src={product.image} alt={product.name}
+              class="w-full h-full object-cover transition-transform duration-500 ease-in-out hover:scale-110" />
           </div>
+
+          <div class="flex flex-col flex-grow justify-between mt-5">
+            <div>
+              <h3 class="text-2xl font-bold text-yellow-900">{product.name}</h3>
+              <p class="mt-3 text-yellow-700 text-sm leading-relaxed">
+                {product.description}
+              </p>
+            </div>
+
+            <a href={`/products/${product.id}`}
+              class="mt-5 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-500 ease-in-out transform hover:scale-105 text-center">
+              Buy Now
+            </a>
+          </div>
+
+        </div>
         ))}
       </div>
     </div>
   </section>
-  
-  
-  
-  
+
+  <!-- why jaggery is better than sugar -->
+  <section class="py-20 bg-gradient-to-b from-yellow-50 to-white">
+    <div class="container mx-auto text-center px-6">
+      <h2 class="text-4xl font-extrabold text-yellow-900">Jaggery vs. Sugar: The Healthier Choice</h2>
+      <p class="text-yellow-800 mt-4 text-lg">Discover why jaggery is a natural powerhouse, unlike processed sugar.</p>
+
+      <!-- Jaggery vs Sugar Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10">
+
+        <!-- Jaggery Benefits -->
+        <div
+          class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 ease-in-out transform hover:-translate-y-2 hover:scale-105 flex flex-col">
+          <h3 class="text-2xl font-bold text-yellow-900 mb-6">🌿 Benefits of Jaggery</h3>
+          <div class="grid grid-cols-1 gap-6">
+            {jaggeryBenefits.map((item) => (
+            <div class="flex items-center bg-yellow-100 p-4 rounded-xl shadow-md min-h-[100px]">
+              <span class="text-3xl flex-shrink-0">{item.icon}</span>
+              <div class="text-left flex-grow">
+                <h4 class="text-lg font-semibold text-yellow-900">{item.title}</h4>
+                <p class="text-yellow-800 text-sm">{item.description}</p>
+              </div>
+            </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Sugar Downsides -->
+        <div
+          class="bg-red-50 p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 ease-in-out transform hover:-translate-y-2 hover:scale-105 flex flex-col">
+          <h3 class="text-2xl font-bold text-red-700 mb-6">🚫 Downsides of Sugar</h3>
+          <div class="grid grid-cols-1 gap-6">
+            {sugarDownsides.map((item) => (
+            <div class="flex items-center bg-red-100 p-4 rounded-xl shadow-md min-h-[100px]">
+              <span class="text-3xl flex-shrink-0">{item.icon}</span>
+              <div class="text-left flex-grow">
+                <h4 class="text-lg font-semibold text-red-800">{item.title}</h4>
+                <p class="text-red-700 text-sm">{item.description}</p>
+              </div>
+            </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+      <!-- Instagram Video Embed -->
+      <div class="mt-10">
+        <h3 class="text-2xl font-semibold text-yellow-900 mb-4">See the Difference in Action 📹</h3>
+        <div class="flex justify-center">
+          <blockquote class="instagram-media rounded-lg shadow-lg"
+            data-instgrm-permalink="https://www.instagram.com/reel/DG209jgTbKX/?igsh=Y2JvMWVoY3B3MWd2"
+            data-instgrm-version="14" style=" background:#FFF; border:0; margin: 1px; max-width:540px; width:100%;">
+          </blockquote>
+          <script async defer src="//www.instagram.com/embed.js"></script>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
 
   <!-- About Section -->
   <section class="bg-yellow-50 py-16">
@@ -80,22 +141,14 @@ import products from "../data/products.json";
       <div class="mt-12 flex flex-col md:flex-row items-center gap-10">
         <!-- Left: Image Grid -->
         <div class="flex-1 grid grid-cols-2 gap-4 mx-2">
-          <img
-            src="jaggery-powder-2.jpg"
-            alt="Natural Jaggery"
-            class="w-full h-56 object-cover rounded-xl shadow-lg transform hover:scale-105 transition"
-          />
-          <img
-            src="jaggery-brown-2.jpg"
-            alt="Organic Jaggery Blocks"
-            class="w-full h-56 object-cover rounded-xl shadow-lg transform hover:scale-105 transition"
-          />
+          <img src="jaggery-powder-2.jpg" alt="Natural Jaggery"
+            class="w-full h-56 object-cover rounded-xl shadow-lg transform hover:scale-105 transition" />
+          <img src="jaggery-brown-2.jpg" alt="Organic Jaggery Blocks"
+            class="w-full h-56 object-cover rounded-xl shadow-lg transform hover:scale-105 transition" />
         </div>
 
         <!-- Right: About Card -->
-        <div
-          class="bg-white p-8 mx-4 rounded-2xl shadow-2xl flex-1 border-l-8 border-yellow-500"
-        >
+        <div class="bg-white p-8 mx-4 rounded-2xl shadow-2xl flex-1 border-l-8 border-yellow-500">
           <h3 class="text-2xl font-semibold text-yellow-900">
             About Jaggery Delight
           </h3>
@@ -116,46 +169,32 @@ import products from "../data/products.json";
 
       <!-- Our Team Section -->
       <div class="mt-16 mx-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-        <div
-          class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center"
-        >
+        <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center">
           <img
             src="https://cdn.iconscout.com/icon/free/png-512/free-profile-icon-download-in-svg-png-gif-file-formats--user-avatar-account-man-people-iconly-essential-icons-pack-interface-2036107.png?f=webp&w=512"
-            alt="Brendan Rich"
-            class="w-32 h-32 rounded-full shadow-md"
-          />
+            alt="Brendan Rich" class="w-32 h-32 rounded-full shadow-md" />
           <h4 class="text-xl font-bold text-yellow-900 mt-4">Brendan Rich</h4>
           <p class="text-yellow-700 text-center">
             Production Manager, Tully Sugar
           </p>
           <p class="text-yellow-700 text-center mt-2">
-            28 years in the sugar industry, awarded the <strong
-              >President’s Medal from ASSCT</strong
-            >.
+            28 years in the sugar industry, awarded the <strong>President’s Medal from ASSCT</strong>.
           </p>
         </div>
-        <div
-          class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center"
-        >
+        <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center">
           <img
             src="https://cdn.iconscout.com/icon/free/png-512/free-profile-icon-download-in-svg-png-gif-file-formats--user-avatar-account-man-people-iconly-essential-icons-pack-interface-2036107.png?f=webp&w=512"
-            alt="Arjun Singh"
-            class="w-32 h-32 rounded-full shadow-md"
-          />
+            alt="Arjun Singh" class="w-32 h-32 rounded-full shadow-md" />
           <h4 class="text-xl font-bold text-yellow-900 mt-4">Arjun Singh</h4>
           <p class="text-yellow-700 text-center">Mechanical Engineer</p>
           <p class="text-yellow-700 text-center mt-2">
             2 years of experience in the sugar industry.
           </p>
         </div>
-        <div
-          class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center"
-        >
+        <div class="bg-white p-6 rounded-xl shadow-lg flex flex-col items-center">
           <img
             src="https://cdn.iconscout.com/icon/free/png-512/free-profile-icon-download-in-svg-png-gif-file-formats--user-avatar-account-man-people-iconly-essential-icons-pack-interface-2036107.png?f=webp&w=512"
-            alt="Arundeep Singh"
-            class="w-32 h-32 rounded-full shadow-md"
-          />
+            alt="Arundeep Singh" class="w-32 h-32 rounded-full shadow-md" />
           <h4 class="text-xl font-bold text-yellow-900 mt-4">Arundeep Singh</h4>
           <p class="text-yellow-700 text-center">Co-Founder</p>
           <p class="text-yellow-700 text-center mt-2">
@@ -165,21 +204,17 @@ import products from "../data/products.json";
       </div>
 
       <!-- Mission Statement -->
-      <div
-        class="mt-16 mx-4 bg-white p-8 rounded-2xl shadow-lg border-l-8 border-yellow-500"
-      >
+      <div class="mt-16 mx-4 bg-white p-8 rounded-2xl shadow-lg border-l-8 border-yellow-500">
         <h3 class="text-2xl font-semibold text-yellow-900">
           Our Mission & Vision
         </h3>
         <p class="mt-4 text-yellow-800">
-          Our mission is to <strong
-            >provide a healthier alternative to refined sugar</strong
-          > and improve consumer health.
+          Our mission is to <strong>provide a healthier alternative to refined sugar</strong> and improve consumer
+          health.
         </p>
         <p class="mt-2 text-yellow-800">
-          Unlike raw, brown, or white sugar, <strong
-            >gold sugar (jaggery)</strong
-          > does not spike insulin levels drastically.
+          Unlike raw, brown, or white sugar, <strong>gold sugar (jaggery)</strong> does not spike insulin levels
+          drastically.
           <strong>Gold sugar is 100% wholesome sugarcane sugar</strong>, making
           it the best form of sugar available.
         </p>
